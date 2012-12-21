@@ -42,7 +42,7 @@ public class HolidayEndpoint {
         //nameExpression.addNamespace(namespace);
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetDateSuggestion")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "HolidayRequest")
     public void handleHolidayRequest(@RequestPayload Element holidayRequest)
             throws Exception {
         System.out.println("Hallo, misschien?");
