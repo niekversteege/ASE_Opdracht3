@@ -43,14 +43,25 @@ public class HolidayEndpoint {
         int userId = 0;
         int inviteeId = 0;
 
-        try {
-            userId = Integer.parseInt(userExpression.valueOf(dateSuggestion));
-            inviteeId = Integer.parseInt(inviteeExpression.valueOf(dateSuggestion));
-        } catch (NumberFormatException e) {
-            log.error("Received non-int userIds.", e);
-        }
+        String userString = userExpression.valueOf(dateSuggestion);
+        String inviteeString = inviteeExpression.valueOf(dateSuggestion);
 
-        String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
-        log.debug(date);
+        log.debug("Received: " + userString + ". And: " + inviteeString + ".");
+        
+        if (!userString.isEmpty() && !inviteeString.isEmpty()) {
+            try {
+                userId = Integer.parseInt(userString);
+                inviteeId = Integer.parseInt(inviteeString);
+
+            } catch (NumberFormatException e) {
+                log.error("Received non-int userIds.", e);
+            }
+
+            String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
+            log.debug("Date string: " + date);
+        }
+        else {
+            log.warn("Received empty user and invitee IDs");
+        }
     }
 }
