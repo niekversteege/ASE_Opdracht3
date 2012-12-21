@@ -12,7 +12,7 @@
     <sws:dynamic-wsdl 	id="dare2date"
                           portTypeName="HumanResource"
                           locationUri="/hr_service/"
-                          targetNamespace="http://simple-sample.com/definition/holiday-request/">
+                          targetNamespace="http://simple-sample.com/dd/">
         <sws:xsd location="/WEB-INF/datesuggestion.xsd"/>
     </sws:dynamic-wsdl>
 
