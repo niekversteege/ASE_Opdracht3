@@ -1,10 +1,16 @@
 package com.simple.spring.ws;
 
-import java.util.Date;
-
 public class SimpleHumanResourceService implements HumanResourceService {
-    public void bookHoliday(Date startDate, Date endDate, String name) {
-        
-        System.out.println("Holiday booked for " + name);
+
+    @Override
+    public String getDateSuggestion(final int userId, final int inviteeId) {
+
+        String retVal = null;
+
+        if (userId != 0 && inviteeId != 0) {
+            retVal = "A date at blabla for " + userId + " and the invited " + inviteeId + ". Doing stuff.";
+        }
+
+        return retVal;
     }
 }

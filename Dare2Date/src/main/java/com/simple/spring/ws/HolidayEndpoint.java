@@ -2,56 +2,53 @@ package com.simple.spring.ws;
 
 import org.jdom.Element;
 import org.jdom.JDOMException;
+import org.jdom.Namespace;
 import org.jdom.xpath.XPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @Endpoint
 public class HolidayEndpoint {
 
     private static final String NAMESPACE_URI = "http://simple-sample.com/dd/";
-
-    private XPath startDateExpression;
-
-    private XPath endDateExpression;
-
-    private XPath nameExpression;
-
-    private HumanResourceService humanResourceService;
+    public static final String XPATH_USER_ID = "//UserId";
+    public static final String XPATH_INVITEE_ID = "//InviteeId";
+    private XPath userExpression;
+    private XPath inviteeExpression;
+    private HumanResourceService dateSuggestionService;
 
     @Autowired
-    public HolidayEndpoint(HumanResourceService humanResourceService)
+    public HolidayEndpoint(HumanResourceService dateSuggestionService)
             throws JDOMException {
-        System.out.println("Hallo, misschien111?");
-        this.humanResourceService = humanResourceService;
 
-       // Namespace namespace = Namespace.getNamespace("spring", NAMESPACE_URI);
+        this.dateSuggestionService = dateSuggestionService;
 
-        //startDateExpression = XPath.newInstance("//StartDate");
-        //startDateExpression.addNamespace(namespace);
+        Namespace namespace = Namespace.getNamespace("spring", NAMESPACE_URI);
 
-       // endDateExpression = XPath.newInstance("//EndDate");
-        //endDateExpression.addNamespace(namespace);
+        userExpression = XPath.newInstance(XPATH_USER_ID);
+        userExpression.addNamespace(namespace);
 
-        //nameExpression = XPath.newInstance("concat(//FirstName,' ',//LastName)");
-        //nameExpression.addNamespace(namespace);
+        inviteeExpression = XPath.newInstance(XPATH_INVITEE_ID);
+        inviteeExpression.addNamespace(namespace);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "HolidayRequest")
-    public void handleHolidayRequest(@RequestPayload Element holidayRequest)
+    public void handleHolidayRequest(@RequestPayload Element dateSuggestion)
             throws Exception {
-        System.out.println("Hallo, misschien?");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate = dateFormat.parse("2012-01-01");
-        Date endDate = dateFormat.parse("2012-01-01");
-        String name = "derp";
 
-        humanResourceService.bookHoliday(startDate, endDate, name);
+        int userId = 0;
+        int inviteeId = 0;
+
+        try {
+            userId = Integer.parseInt(userExpression.valueOf(dateSuggestion));
+            inviteeId = Integer.parseInt(inviteeExpression.valueOf(dateSuggestion));
+        } catch (NumberFormatException e) {
+            // todo: logger
+        }
+
+        String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
+        System.out.println(date);
     }
-
 }
