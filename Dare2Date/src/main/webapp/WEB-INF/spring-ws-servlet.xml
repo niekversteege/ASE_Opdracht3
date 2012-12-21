@@ -11,8 +11,8 @@
 
     <sws:dynamic-wsdl 	id="dare2date"
                           portTypeName="HumanResource"
-                          locationUri="/hr_service/"
-                          targetNamespace="http://simple-sample.com/dd/">
+                          locationUri="/ds_service/"
+                          targetNamespace="http://dare2date.com/dd/">
         <sws:xsd location="/WEB-INF/datesuggestion.xsd"/>
     </sws:dynamic-wsdl>
 

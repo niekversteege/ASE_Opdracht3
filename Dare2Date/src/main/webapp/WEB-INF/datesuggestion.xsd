@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://simple-sample.com/dd/" targetNamespace="http://simple-sample.com/dd/">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://dare2date.com/dd/" targetNamespace="http://dare2date.com/dd/">
     <element name="HolidayRequest" type="ds:DateSuggestionType"/>
 
     <complexType name="DateSuggestionType">

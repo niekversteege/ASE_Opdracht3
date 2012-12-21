@@ -14,7 +14,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 @Log4j
 public class HolidayEndpoint {
 
-    private static final String NAMESPACE_URI = "http://simple-sample.com/dd/";
+    private static final String NAMESPACE_URI = "http://dare2date.com/dd/";
     public static final String XPATH_USER_ID = "//UserId";
     public static final String XPATH_INVITEE_ID = "//InviteeId";
     private XPath userExpression;
