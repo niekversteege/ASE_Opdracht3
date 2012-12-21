@@ -3,8 +3,8 @@
   <xs:element name="GetDateSuggestion">
     <xs:complexType>
 	<xs:sequence>
-		<xs:element name="UserId" type="xs:integer" />
-		<xs:element name="InviteeId" type="xs:integer" />
+            <xs:element name="UserId" type="xs:integer" />
+            <xs:element name="InviteeId" type="xs:integer" />
 	</xs:sequence>
 	</xs:complexType>
   </xs:element>
