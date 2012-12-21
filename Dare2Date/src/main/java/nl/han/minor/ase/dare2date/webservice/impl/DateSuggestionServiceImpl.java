@@ -1,9 +1,10 @@
-package com.simple.spring.ws;
+package nl.han.minor.ase.dare2date.webservice.impl;
 
 import lombok.extern.log4j.Log4j;
+import nl.han.minor.ase.dare2date.webservice.DateSuggestionService;
 
 @Log4j
-public class SimpleHumanResourceService implements HumanResourceService {
+public class DateSuggestionServiceImpl implements DateSuggestionService {
 
     @Override
     public String getDateSuggestion(final int userId, final int inviteeId) {

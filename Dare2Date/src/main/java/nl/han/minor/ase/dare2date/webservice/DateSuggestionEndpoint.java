@@ -1,4 +1,4 @@
-package com.simple.spring.ws;
+package nl.han.minor.ase.dare2date.webservice;
 
 import lombok.extern.log4j.Log4j;
 import org.jdom.Element;
@@ -12,17 +12,17 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 @Endpoint
 @Log4j
-public class HolidayEndpoint {
+public class DateSuggestionEndpoint {
 
     private static final String NAMESPACE_URI = "http://dare2date.com/dd/";
     public static final String XPATH_USER_ID = "//UserId";
     public static final String XPATH_INVITEE_ID = "//InviteeId";
     private XPath userExpression;
     private XPath inviteeExpression;
-    private HumanResourceService dateSuggestionService;
+    private DateSuggestionService dateSuggestionService;
 
     @Autowired
-    public HolidayEndpoint(HumanResourceService dateSuggestionService)
+    public DateSuggestionEndpoint(DateSuggestionService dateSuggestionService)
             throws JDOMException {
 
         this.dateSuggestionService = dateSuggestionService;
@@ -36,8 +36,8 @@ public class HolidayEndpoint {
         inviteeExpression.addNamespace(namespace);
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "HolidayRequest")
-    public void handleHolidayRequest(@RequestPayload Element dateSuggestion)
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "DateSuggestionRequest")
+    public void handleDateSuggestionRequest(@RequestPayload Element dateSuggestion)
             throws Exception {
 
         int userId = 0;
