@@ -9,6 +9,7 @@
     <name>Dare2Date Spring-WS Application</name>
     <url>http://www.springframework.org/spring-ws</url>
     <build>
+        
         <finalName>Dare2Date</finalName>
         <plugins>
             <plugin>
