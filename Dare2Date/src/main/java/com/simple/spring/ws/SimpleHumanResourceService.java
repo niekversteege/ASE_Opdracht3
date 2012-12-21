@@ -1,5 +1,8 @@
 package com.simple.spring.ws;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 public class SimpleHumanResourceService implements HumanResourceService {
 
     @Override

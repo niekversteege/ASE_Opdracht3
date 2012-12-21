@@ -1,5 +1,6 @@
 package com.simple.spring.ws;
 
+import lombok.extern.log4j.Log4j;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Namespace;
@@ -10,6 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 @Endpoint
+@Log4j
 public class HolidayEndpoint {
 
     private static final String NAMESPACE_URI = "http://simple-sample.com/dd/";
@@ -45,10 +47,10 @@ public class HolidayEndpoint {
             userId = Integer.parseInt(userExpression.valueOf(dateSuggestion));
             inviteeId = Integer.parseInt(inviteeExpression.valueOf(dateSuggestion));
         } catch (NumberFormatException e) {
-            // todo: logger
+            log.error("Received non-int userIds.", e);
         }
 
         String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
-        System.out.println(date);
+        log.debug(date);
     }
 }
