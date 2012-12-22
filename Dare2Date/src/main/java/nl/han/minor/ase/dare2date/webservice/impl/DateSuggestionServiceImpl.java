@@ -1,10 +1,11 @@
 package nl.han.minor.ase.dare2date.webservice.impl;
 
-import lombok.extern.log4j.Log4j;
 import nl.han.minor.ase.dare2date.webservice.DateSuggestionService;
+import org.apache.log4j.Logger;
 
-@Log4j
 public class DateSuggestionServiceImpl implements DateSuggestionService {
+
+    private final Logger log = Logger.getLogger(this.getClass().getName());
 
     @Override
     public String getDateSuggestion(final int userId, final int inviteeId) {

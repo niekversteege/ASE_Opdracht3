@@ -1,6 +1,6 @@
 package nl.han.minor.ase.dare2date.webservice;
 
-import lombok.extern.log4j.Log4j;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Namespace;
@@ -11,9 +11,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
 @Endpoint
-@Log4j
 public class DateSuggestionEndpoint {
 
+    private final Logger log = Logger.getLogger(this.getClass().getName());
     private static final String NAMESPACE_URI = "http://dare2date.com/dd/";
     public static final String XPATH_USER_ID = "//UserId";
     public static final String XPATH_INVITEE_ID = "//InviteeId";
@@ -47,7 +47,7 @@ public class DateSuggestionEndpoint {
         String inviteeString = inviteeExpression.valueOf(dateSuggestion);
 
         log.debug("Received: " + userString + ". And: " + inviteeString + ".");
-        
+
         if (!userString.isEmpty() && !inviteeString.isEmpty()) {
             try {
                 userId = Integer.parseInt(userString);
@@ -59,8 +59,7 @@ public class DateSuggestionEndpoint {
 
             String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
             log.debug("Date string: " + date);
-        }
-        else {
+        } else {
             log.warn("Received empty user and invitee IDs");
         }
     }
