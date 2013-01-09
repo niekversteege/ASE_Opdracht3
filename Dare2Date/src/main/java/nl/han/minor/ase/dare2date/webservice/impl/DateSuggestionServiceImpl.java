@@ -1,11 +1,16 @@
 package nl.han.minor.ase.dare2date.webservice.impl;
 
+import nl.han.minor.ase.dare2date.profileservice.ProfileService;
 import nl.han.minor.ase.dare2date.webservice.DateSuggestionService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class DateSuggestionServiceImpl implements DateSuggestionService {
 
     private final Logger log = Logger.getLogger(this.getClass().getName());
+    
+    @Autowired
+    private ProfileService profileService;
 
     @Override
     public String getDateSuggestion(final int userId, final int inviteeId) {
@@ -15,6 +20,9 @@ public class DateSuggestionServiceImpl implements DateSuggestionService {
         if (userId != 0 && inviteeId != 0) {
             retVal = "A date at blabla for " + userId + " and the invited " + inviteeId + ". Doing stuff.";
         }
+        
+        log.debug("Testing profile service: " + profileService.getAddress(34));
+        log.debug("Testing profile service: " + profileService.getInterests(44));
 
         return retVal;
     }

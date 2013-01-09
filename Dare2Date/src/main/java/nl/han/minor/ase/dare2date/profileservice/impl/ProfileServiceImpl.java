@@ -7,13 +7,11 @@ package nl.han.minor.ase.dare2date.profileservice.impl;
 import java.util.ArrayList;
 import java.util.List;
 import nl.han.minor.ase.dare2date.profileservice.ProfileService;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Niek
  */
-@Service
 public class ProfileServiceImpl implements ProfileService {
 
     @Override
@@ -25,9 +23,9 @@ public class ProfileServiceImpl implements ProfileService {
     public List<String> getInterests(int profileId) {
         List<String> interests = new ArrayList();
         
-        interests.add(profileId + " fietsen");
-        interests.add(profileId + " bowlen");
-        interests.add(profileId + " creatiefmetkurk");
+        interests.add("fietsen");
+        interests.add("bowlen");
+        interests.add("creatiefmetkurk");
         
         return interests;
     }
