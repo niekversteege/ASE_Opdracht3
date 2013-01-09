@@ -21,8 +21,8 @@ public class DateSuggestionServiceImpl implements DateSuggestionService {
             retVal = "A date at blabla for " + userId + " and the invited " + inviteeId + ". Doing stuff.";
         }
         
-        log.debug("Testing profile service: " + profileService.getAddress(34));
-        log.debug("Testing profile service: " + profileService.getInterests(44));
+        log.debug("Address for userId: " + profileService.getAddress(userId));
+        log.debug("Address for inviteeId: " + profileService.getAddress(inviteeId));
 
         return retVal;
     }
