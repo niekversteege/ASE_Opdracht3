@@ -5,6 +5,7 @@
 package nl.han.minor.ase.dare2date.profileservice;
 
 import java.util.List;
+import nl.han.minor.ase.dare2date.maps.MapLocation;
 
 /**
  *
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public interface ProfileService {
 
-    public String getAddress(int profileId);
+    public MapLocation getAddress(int profileId);
 
     public List<String> getInterests(int profileId);
-    
+
     public List<String> getCommonInterest(int profileId, int anotherProfileId);
 }

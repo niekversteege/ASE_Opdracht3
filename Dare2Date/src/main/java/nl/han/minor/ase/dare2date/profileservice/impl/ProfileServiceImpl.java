@@ -4,8 +4,13 @@
  */
 package nl.han.minor.ase.dare2date.profileservice.impl;
 
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import nl.han.minor.ase.dare2date.maps.MapLocation;
+import nl.han.minor.ase.dare2date.profileservice.PeopleDao;
+import nl.han.minor.ase.dare2date.profileservice.Person;
 import nl.han.minor.ase.dare2date.profileservice.ProfileService;
 
 /**
@@ -13,73 +18,31 @@ import nl.han.minor.ase.dare2date.profileservice.ProfileService;
  * @author Niek
  */
 public class ProfileServiceImpl implements ProfileService {
-
-    private static final int HENK_JANSSEN = 444;
-    private static final int WILLEKEURIGE_VROUW = 545;
+    
+    private Map<Integer, Person> people = PeopleDao.getPeople();
 
     @Override
-    public String getAddress(int profileId) {
-        String adres = null;
-
-        switch (profileId) {
-            case HENK_JANSSEN:
-                adres = "Straatvanhenkjanssen 4";
-                break;
-            case WILLEKEURIGE_VROUW:
-                adres = "Straatvanwillekeurigevrouw 10";
-                break;
-        }
-
-        return adres;
+    public MapLocation getAddress(int profileId) {
+        
+        return people.get(profileId).getAddress();
     }
 
     @Override
     public List<String> getInterests(int profileId) {
-        List<String> interests = null;
-
-        switch (profileId) {
-            case HENK_JANSSEN:
-                interests = getHenkJanssenInterests();
-                break;
-            case WILLEKEURIGE_VROUW:
-                interests = getWillekeurigeVrouwInterests();
-                break;
-        }
-
-        return interests;
-    }
-
-    private List<String> getHenkJanssenInterests() {
-
-        List<String> interests = new ArrayList();
-
-        interests.add("fietsen");
-        interests.add("bowlen");
-        interests.add("creatiefmetkurk");
-
-        return interests;
-    }
-
-    private List<String> getWillekeurigeVrouwInterests() {
-        List<String> interests = new ArrayList();
-
-        interests.add("fietsen");
-        interests.add("roken");
-        interests.add("jam maken");
-
-        return interests;
+        
+        return people.get(profileId).getInterests();
     }
 
     @Override
     public List<String> getCommonInterest(int profileId, int anotherProfileId) {
         List<String> commonInterests = new ArrayList<String>();
-        
+
         List firstInterests = getInterests(profileId);
         List secondInterests = getInterests(anotherProfileId);
-        
+
         commonInterests.addAll(firstInterests);
         commonInterests.retainAll(secondInterests);
-        
+
         return commonInterests;
     }
 }

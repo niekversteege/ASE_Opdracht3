@@ -5,30 +5,32 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import nl.han.minor.ase.dare2date.maps.MapLocation;
 
-@XmlRootElement(name="DateSuggestionResponse",namespace="http://dare2date.com/dd/")
+@XmlRootElement(name = "DateSuggestionResponse", namespace = "http://dare2date.com/dd/")
 @XmlAccessorType
 @XmlType
-public class DateSuggestion implements Serializable{
-    
-	private String street,number, town, postcode, country,activity;
-	
-	public DateSuggestion() {}
+public class DateSuggestion implements Serializable {
 
-	public DateSuggestion(String town,String street,String number, String postcode, String country, String activity) {
-            
-		this.town = town;
-                this.street = street;
-                this.number = number;
-		this.postcode = postcode;
-		this.country = country;
-                this.activity = activity;
-	}
+    private String street, number, town, postcode, country, activity;
+
+    public DateSuggestion() {
+    }
+
+    public DateSuggestion(String town, String street, String number, String postcode, String country, String activity) {
+
+        this.town = town;
+        this.street = street;
+        this.number = number;
+        this.postcode = postcode;
+        this.country = country;
+        this.activity = activity;
+    }
 
     /**
      * @return the street
      */
-    @XmlElement(name="street",namespace="http://dare2date.com/dd/")
+    @XmlElement(name = "street", namespace = "http://dare2date.com/dd/")
     public String getStreet() {
         return street;
     }
@@ -43,7 +45,7 @@ public class DateSuggestion implements Serializable{
     /**
      * @return the number
      */
-    @XmlElement(name="number",namespace="http://dare2date.com/dd/")
+    @XmlElement(name = "number", namespace = "http://dare2date.com/dd/")
     public String getNumber() {
         return number;
     }
@@ -58,7 +60,7 @@ public class DateSuggestion implements Serializable{
     /**
      * @return the town
      */
-    @XmlElement(name="town",namespace="http://dare2date.com/dd/")
+    @XmlElement(name = "town", namespace = "http://dare2date.com/dd/")
     public String getTown() {
         return town;
     }
@@ -73,7 +75,7 @@ public class DateSuggestion implements Serializable{
     /**
      * @return the postcode
      */
-    @XmlElement(name="postcode",namespace="http://dare2date.com/dd/")
+    @XmlElement(name = "postcode", namespace = "http://dare2date.com/dd/")
     public String getPostcode() {
         return postcode;
     }
@@ -88,7 +90,7 @@ public class DateSuggestion implements Serializable{
     /**
      * @return the country
      */
-    @XmlElement(name="country",namespace="http://dare2date.com/dd/")
+    @XmlElement(name = "country", namespace = "http://dare2date.com/dd/")
     public String getCountry() {
         return country;
     }
@@ -103,7 +105,7 @@ public class DateSuggestion implements Serializable{
     /**
      * @return the activity
      */
-    @XmlElement(name="activity",namespace="http://dare2date.com/dd/")
+    @XmlElement(name = "activity", namespace = "http://dare2date.com/dd/")
     public String getActivity() {
         return activity;
     }
@@ -113,5 +115,13 @@ public class DateSuggestion implements Serializable{
      */
     public void setActivity(String activity) {
         this.activity = activity;
+    }
+
+    public void setLocation(MapLocation location) {
+        setCountry(location.getCountry());
+        setNumber(location.getNumber());
+        setPostcode(location.getPostcode());
+        setStreet(location.getStreet());
+        setTown(location.getTown());
     }
 }

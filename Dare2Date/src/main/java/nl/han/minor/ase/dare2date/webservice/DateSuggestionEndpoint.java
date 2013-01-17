@@ -46,8 +46,8 @@ public class DateSuggestionEndpoint {
 
         int userId = 0;
         int inviteeId = 0;
-        DateSuggestion d = new DateSuggestion("ttt", "streeeeeet", "1234", "2837 KJ", "Netherlands", "Schommelen");
-        DateSuggestionResponse resp = new DateSuggestionResponse( d );
+
+        DateSuggestionResponse resp = null;
 
         String userString = userExpression.valueOf(dateSuggestion);
         String inviteeString = inviteeExpression.valueOf(dateSuggestion);
@@ -63,9 +63,8 @@ public class DateSuggestionEndpoint {
                 log.error("Received non-int userIds.", e);
             }
 
-            String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
-            log.debug("Date string: " + date);
-            
+            resp = dateSuggestionService.getDateSuggestion(userId, inviteeId);
+
         } else {
             log.warn("Received empty user and invitee IDs");
         }

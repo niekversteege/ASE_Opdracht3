@@ -1,7 +1,10 @@
 package nl.han.minor.ase.dare2date.webservice.impl;
 
-import nl.han.minor.ase.dare2date.service.MapsService;
+import nl.han.minor.ase.dare2date.maps.MapLocation;
+import nl.han.minor.ase.dare2date.maps.service.MapsService;
+import nl.han.minor.ase.dare2date.message.DateSuggestionResponse;
 import nl.han.minor.ase.dare2date.profileservice.ProfileService;
+import nl.han.minor.ase.dare2date.types.DateSuggestion;
 import nl.han.minor.ase.dare2date.webservice.DateSuggestionService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,24 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class DateSuggestionServiceImpl implements DateSuggestionService {
 
     private final Logger log = Logger.getLogger(this.getClass().getName());
-    
     @Autowired
     private ProfileService profileService;
-    
     @Autowired
     private MapsService mapsService;
 
     @Override
-    public String getDateSuggestion(final int userId, final int inviteeId) {
+    public DateSuggestionResponse getDateSuggestion(final int userId, final int inviteeId) {
 
-        String retVal = null;
+        DateSuggestion suggestion = new DateSuggestion();
 
-        if (userId != 0 && inviteeId != 0) {
-            retVal = "A date for " + userId + " and the invited " + inviteeId + ". Activity: " + profileService.getCommonInterest(userId, inviteeId) + ". Near address: " + mapsService.getLocation();
-        }
+        suggestion.setActivity(profileService.getCommonInterest(userId, inviteeId).toString());
 
-        log.debug("Address for userId: " + profileService.getAddress(userId));
-        log.debug("Address for inviteeId: " + profileService.getAddress(inviteeId));
+        MapLocation location = mapsService.getLocation(userId, inviteeId);
+
+        suggestion.setLocation(location);
+
+        DateSuggestionResponse retVal = new DateSuggestionResponse(suggestion);
 
         return retVal;
     }
