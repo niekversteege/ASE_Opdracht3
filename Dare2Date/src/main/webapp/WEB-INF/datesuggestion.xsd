@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://dare2date.com/dd/" targetNamespace="http://dare2date.com/dd/">
     <element name="DateSuggestionRequest" type="ds:DateSuggestionType"/>
-
+    <element name="DateSuggestionResponse" type="ds:dateResponse"/>
+    
     <complexType name="DateSuggestionType">
         <all>
             <element name="UserId" type="integer"/>
             <element name="InviteeId" type="integer"/>
+        </all>
+    </complexType>
+    
+    <complexType name="dateResponse">
+        <all>
+             <element name="town" type="string"/>
+             <element name="street" type="string"/>
+             <element name="number" type="string"/>
+             <element name="postcode" type="string"/>
+             <element name="country" type="string"/>
+             <element name="activity" type="string"/>
         </all>
     </complexType>
 </schema>
