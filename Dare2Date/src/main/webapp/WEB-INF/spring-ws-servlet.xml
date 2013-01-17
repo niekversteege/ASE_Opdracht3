@@ -19,5 +19,17 @@
     <bean id="dsBean" class="nl.han.minor.ase.dare2date.webservice.impl.DateSuggestionServiceImpl"/>
     <bean id="prBean" class="nl.han.minor.ase.dare2date.profileservice.impl.ProfileServiceImpl" />
     <bean id="nkBean" class="nl.han.minor.ase.dare2date.nokiamaps.service.impl.NokiaMapsServiceImpl" />
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">  
+      <property name="messageConverters">
+       <list>
+           <bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+            <property name="marshaller" ref="xstreamMarshaller"/>
+            <property name="unmarshaller" ref="xstreamMarshaller"/>
+           </bean>
+           <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+       </list>
+      </property>
+    </bean>
 
 </beans>
