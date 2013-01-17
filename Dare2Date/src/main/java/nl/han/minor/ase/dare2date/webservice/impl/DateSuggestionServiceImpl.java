@@ -1,5 +1,6 @@
 package nl.han.minor.ase.dare2date.webservice.impl;
 
+import nl.han.minor.ase.dare2date.nokiamaps.service.NokiaMapsService;
 import nl.han.minor.ase.dare2date.profileservice.ProfileService;
 import nl.han.minor.ase.dare2date.webservice.DateSuggestionService;
 import org.apache.log4j.Logger;
@@ -11,6 +12,9 @@ public class DateSuggestionServiceImpl implements DateSuggestionService {
     
     @Autowired
     private ProfileService profileService;
+    
+    @Autowired
+    private NokiaMapsService nokiaMapsService;
 
     @Override
     public String getDateSuggestion(final int userId, final int inviteeId) {
@@ -18,7 +22,7 @@ public class DateSuggestionServiceImpl implements DateSuggestionService {
         String retVal = null;
 
         if (userId != 0 && inviteeId != 0) {
-            retVal = "A date at blabla for " + userId + " and the invited " + inviteeId + ". Doing stuff.";
+            retVal = "A date at blabla for " + userId + " and the invited " + inviteeId + ". Doing stuff. At address: " + nokiaMapsService.getLocation();
         }
         
         log.debug("Address for userId: " + profileService.getAddress(userId));

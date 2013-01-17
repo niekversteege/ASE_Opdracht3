@@ -18,5 +18,6 @@
 
     <bean id="dsBean" class="nl.han.minor.ase.dare2date.webservice.impl.DateSuggestionServiceImpl"/>
     <bean id="prBean" class="nl.han.minor.ase.dare2date.profileservice.impl.ProfileServiceImpl" />
+    <bean id="nkBean" class="nl.han.minor.ase.dare2date.nokiamaps.service.impl.NokiaMapsServiceImpl" />
 
 </beans>
