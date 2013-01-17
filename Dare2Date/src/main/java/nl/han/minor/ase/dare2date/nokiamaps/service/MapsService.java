@@ -8,7 +8,7 @@ package nl.han.minor.ase.dare2date.nokiamaps.service;
  *
  * @author Niek
  */
-public interface NokiaMapsService {
+public interface MapsService {
     
     public String getLocation();
 }
