@@ -1,5 +1,7 @@
 package nl.han.minor.ase.dare2date.webservice;
 
+import nl.han.minor.ase.dare2date.message.DateSuggestionResponse;
+import nl.han.minor.ase.dare2date.types.DateSuggestion;
 import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class DateSuggestionEndpoint {
@@ -37,11 +40,14 @@ public class DateSuggestionEndpoint {
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "DateSuggestionRequest")
-    public void handleDateSuggestionRequest(@RequestPayload Element dateSuggestion)
+    @ResponsePayload
+    public DateSuggestionResponse handleDateSuggestionRequest(@RequestPayload Element dateSuggestion)
             throws Exception {
 
         int userId = 0;
         int inviteeId = 0;
+        DateSuggestion d = new DateSuggestion("ttt", "streeeeeet", "1234", "2837 KJ", "Netherlands", "Schommelen");
+        DateSuggestionResponse resp = new DateSuggestionResponse( d );
 
         String userString = userExpression.valueOf(dateSuggestion);
         String inviteeString = inviteeExpression.valueOf(dateSuggestion);
@@ -59,8 +65,10 @@ public class DateSuggestionEndpoint {
 
             String date = dateSuggestionService.getDateSuggestion(userId, inviteeId);
             log.debug("Date string: " + date);
+            
         } else {
             log.warn("Received empty user and invitee IDs");
         }
+        return resp;
     }
 }
