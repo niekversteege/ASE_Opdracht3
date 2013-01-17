@@ -15,4 +15,6 @@ public interface ProfileService {
     public String getAddress(int profileId);
 
     public List<String> getInterests(int profileId);
+    
+    public List<String> getCommonInterest(int profileId, int anotherProfileId);
 }

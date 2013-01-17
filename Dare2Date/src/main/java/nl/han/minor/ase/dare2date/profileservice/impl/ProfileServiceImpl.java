@@ -69,4 +69,17 @@ public class ProfileServiceImpl implements ProfileService {
 
         return interests;
     }
+
+    @Override
+    public List<String> getCommonInterest(int profileId, int anotherProfileId) {
+        List<String> commonInterests = new ArrayList<String>();
+        
+        List firstInterests = getInterests(profileId);
+        List secondInterests = getInterests(anotherProfileId);
+        
+        commonInterests.addAll(firstInterests);
+        commonInterests.retainAll(secondInterests);
+        
+        return commonInterests;
+    }
 }
